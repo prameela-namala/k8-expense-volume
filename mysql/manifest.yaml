@@ -19,16 +19,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql
-  namespace: expense
 spec:
   selector:
-    project: expense
-    component: mysql
-    tier: db
+    app: mysql
   ports:
-      protocol: TCP
+    - protocol: TCP
       port: 3306
       targetPort: 3306
+
 
 ---
 apiVersion: apps/v1
