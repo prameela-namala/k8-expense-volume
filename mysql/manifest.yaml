@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: registry.k8s.io/nginx-slim:0.24
+        image: prameela0/mysql:v1
         volumeMounts:
         - name: mysql
           mountPath: /var/lib/mysql
