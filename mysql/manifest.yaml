@@ -53,8 +53,8 @@ spec:
       securityContext:
         fsGroup: 999
         runAsUser: 999
-      nodeSelector:
-        topology.kubernetes.io/zone: us-east-1d  
+      # nodeSelector:
+      #   topology.kubernetes.io/zone: us-east-1d  
       containers:
       - name: mysql
         image: prameela0/mysql:v1
