@@ -4,30 +4,26 @@ metadata:
   name: backend
   namespace: expense
 data:
- DB_HOST: mysql
+  DB_HOST: mysql
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
   namespace: expense
-  labels: # these are replicaset lables
+  labels:
     app: backend
     tier: api
     project: expense
 spec:
-  # modify replicas according to your case
   replicas: 2
   selector:
-  # these are used to select the pod to create replicas
     matchLabels:
       app: backend
       tier: api
       project: expense
-  # this is pod definition
   template:
     metadata:
-    # these lables belongs to pod
       labels:
         tier: api
         app: backend
@@ -40,13 +36,12 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
-          # limits is greater than or equal to requests
           limits:
             cpu: 100m
             memory: 128Mi
         envFrom:
         - configMapRef:
-           name: backend
+            name: backend # Indentation corrected here
 ---
 apiVersion: v1
 kind: Service
@@ -62,7 +57,7 @@ spec:
     - name: backend-port
       protocol: TCP
       port: 8080
-      targetPort: 8080 
+      targetPort: 8080
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -76,4 +71,4 @@ spec:
     name: backend
   minReplicas: 1
   maxReplicas: 10
- targetCPUUtilizationPercentage: 15 #usually 75 in real environment
+  targetCPUUtilizationPercentage: 15 # Indentation corrected
