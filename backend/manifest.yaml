@@ -32,16 +32,9 @@ spec:
       containers:
       - name: backend
         image: prameela0/backend:v1
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 100m
-            memory: 128Mi
         envFrom:
         - configMapRef:
-            name: backend # Indentation corrected here
+            name: backend 
 ---
 apiVersion: v1
 kind: Service
@@ -58,17 +51,3 @@ spec:
       protocol: TCP
       port: 8080
       targetPort: 8080
----
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: backend
-  namespace: expense
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: backend
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 15 # Indentation corrected
