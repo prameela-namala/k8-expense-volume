@@ -78,4 +78,4 @@ spec:
     name: backend
   minReplicas: 1
   maxReplicas: 10
- target CPUUtilizationPercentage: 15 #usually 75 in real environment
+ targetCPUUtilizationPercentage: 15 #usually 75 in real environment
